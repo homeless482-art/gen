@@ -315,6 +315,151 @@
             box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
         }
         
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 35px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .modal-icon {
+            text-align: center;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .modal-content h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .modal-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .modal-features {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .modal-feature {
+            text-align: center;
+            color: white;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .modal-feature span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+        }
+        
+        .modal-feature p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .modal-button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
         footer {
             text-align: center;
             padding: 40px 0;
@@ -386,10 +531,52 @@
             .cta-section h2 {
                 font-size: 2rem;
             }
+            
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .modal-content h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Modal -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-icon">🌿</div>
+            <h2>Welcome to Nature's Beauty! 🌺</h2>
+            <p>Thank you for joining our community of nature enthusiasts. Get ready to explore the most breathtaking natural wonders our planet has to offer.</p>
+            
+            <div class="modal-features">
+                <div class="modal-feature">
+                    <span>🌲</span>
+                    <p>Forest Trails</p>
+                </div>
+                <div class="modal-feature">
+                    <span>⛰️</span>
+                    <p>Mountain Views</p>
+                </div>
+                <div class="modal-feature">
+                    <span>🌊</span>
+                    <p>Ocean Secrets</p>
+                </div>
+                <div class="modal-feature">
+                    <span>✨</span>
+                    <p>Starry Nights</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1rem; margin-top: 20px;">✨ You'll receive exclusive access to our virtual tours, photography tips, and nature documentaries.</p>
+            
+            <button class="modal-button" onclick="closeModal()">Start Exploring →</button>
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <h1>Nature's Beauty</h1>
@@ -451,7 +638,7 @@
         <section class="cta-section">
             <h2>Start Your Journey Today</h2>
             <p>Join our community of nature enthusiasts and get access to exclusive content, photography tips, and guided virtual tours.</p>
-            <button class="cta-button" onclick="alert('Welcome to Nature\'s Beauty! Thanks for joining us.')">
+            <button class="cta-button" onclick="openModal()">
                 Explore Now
             </button>
         </section>
@@ -467,5 +654,32 @@
             <p style="margin-top: 10px; font-size: 0.9rem;">Discover the beauty that surrounds us every day</p>
         </footer>
     </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('welcomeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal() {
+            document.getElementById('welcomeModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('welcomeModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
